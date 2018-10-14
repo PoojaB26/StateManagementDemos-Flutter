@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:state_management/counter.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+
+  @override
+  HomePageState createState() {
+    return new HomePageState();
+  }
+}
+
+class HomePageState extends State<HomePage> {
+  static int count = 0;
+  Counter counter = new Counter(count);
 
   @override
   Widget build(BuildContext context) {
-    int count = 0;
+
+
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -16,7 +28,12 @@ class HomePage extends StatelessWidget {
             Class2(count),
             RaisedButton(
               child: Text("Add"),
-              onPressed: (){},
+              onPressed: (){
+                setState(() {
+                  count = counter.addCount();
+
+                });
+              },
             )
           ],
         ),
